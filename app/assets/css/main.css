@@ -1,0 +1,79 @@
+@import "tailwindcss";
+@import "@nuxt/ui";
+
+@source "../../../content/**/*";
+
+@theme static {
+  --font-sans: 'Onest', ui-sans-serif, system-ui, sans-serif;
+
+  --color-ink-50: #F6F8FA;
+  --color-ink-100: #EDF0F3;
+  --color-ink-200: #DCE1E6;
+  --color-ink-300: #C3CAD2;
+  --color-ink-400: #98A2AE;
+  --color-ink-500: #6C7683;
+  --color-ink-600: #4E5763;
+  --color-ink-700: #3A414B;
+  --color-ink-800: #262B33;
+  --color-ink-900: #1B1F25;
+  --color-ink-950: #15181D;
+
+  --color-mint: #B9F1DC;
+  --color-sky: #BFDDFB;
+  --color-rose: #FFD2DE;
+  --color-mint-deep: #2FC795;
+  --color-sky-deep: #4C9BEA;
+  --color-rose-deep: #EE6F95;
+}
+
+:root {
+  --ui-bg: #FBFCFD;
+  --ui-primary: var(--color-ink-950);
+  --ui-radius: 0.5rem;
+  --glow-a: var(--color-mint);
+  --glow-b: var(--color-sky);
+  --glow-c: var(--color-rose);
+  --glow-strength: 1;
+}
+
+.dark {
+  --ui-bg: #14171C;
+  --ui-bg-muted: #1A1E25;
+  --ui-bg-elevated: #1F242C;
+  --ui-primary: #F2F4F6;
+  --glow-a: #1E5A49;
+  --glow-b: #1F3F66;
+  --glow-c: #5A2A3B;
+  --glow-strength: 0.9;
+}
+
+.aurora-glow {
+  position: relative;
+  isolation: isolate;
+}
+
+.aurora-glow::before {
+  content: "";
+  position: absolute;
+  inset: -12rem -10% auto -10%;
+  height: 46rem;
+  z-index: -1;
+  pointer-events: none;
+  opacity: var(--glow-strength);
+  background:
+    radial-gradient(38% 46% at 22% 55%, var(--glow-a) 0, transparent 70%),
+    radial-gradient(34% 44% at 55% 45%, var(--glow-b) 0, transparent 70%),
+    radial-gradient(30% 42% at 86% 60%, var(--glow-c) 0, transparent 70%);
+  filter: blur(24px);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero-enter {
+    animation: hero-enter 700ms cubic-bezier(.2, .7, .2, 1) both;
+  }
+}
+
+@keyframes hero-enter {
+  from { opacity: 0; transform: translateY(14px) scale(.985); }
+  to { opacity: 1; transform: none; }
+}

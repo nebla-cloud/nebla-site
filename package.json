@@ -1,0 +1,55 @@
+{
+  "name": "nebla-site",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@10.33.0",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "dev": "nuxt dev",
+    "build": "nuxt build",
+    "generate": "nuxt generate",
+    "preview": "npx serve .output/public -l 3000",
+    "postinstall": "nuxt prepare",
+    "lint": "eslint .",
+    "typecheck": "nuxt typecheck",
+    "test": "node --test tests/*.test.mjs",
+    "check:brand": "node scripts/check-brand.mjs",
+    "check:site": "node scripts/check-site.mjs",
+    "check:layout": "node scripts/check-layout.mjs",
+    "brand": "node brand/build.mjs"
+  },
+  "devDependencies": {
+    "@iconify-json/lucide": "^1.2.157",
+    "@iconify-json/simple-icons": "^1.2.103",
+    "@nuxt/eslint": "1.17.0",
+    "@resvg/resvg-js": "2.6.2",
+    "eslint": "^10.15.0",
+    "node-html-parser": "9.0.7",
+    "opentype.js": "2.0.0",
+    "playwright-core": "1.65.1",
+    "png-to-ico": "3.0.2",
+    "serve": "^14.2.8",
+    "typescript": "^6.0.3",
+    "vue-tsc": "^3.3.14",
+    "yaml": "2.9.1"
+  },
+  "dependencies": {
+    "@nuxt/content": "3.17.0",
+    "@nuxt/fonts": "1.2.0",
+    "@nuxt/ui": "4.13.0",
+    "better-sqlite3": "^13.2.0",
+    "nuxt": "4.6.4",
+    "tailwindcss": "^4.3.5"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "better-sqlite3",
+      "esbuild",
+      "vue-demi",
+      "@parcel/watcher",
+      "sharp"
+    ]
+  }
+}
