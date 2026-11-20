@@ -22,6 +22,6 @@ export default defineNuxtConfig({
   },
   content: { build: { markdown: { highlight: { theme: { default: 'min-light', dark: 'min-dark' }, langs: ['yaml', 'ini', 'sh', 'bash'] } } } },
   icon: { serverBundle: 'local', clientBundle: { scan: true } },
-  nitro: { prerender: { routes: ROUTES, crawlLinks: true, failOnError: true } },
+  nitro: { prerender: { routes: [...ROUTES, '/sitemap.xml'], crawlLinks: true, failOnError: true } },
   compatibilityDate: '2026-11-01'
 })

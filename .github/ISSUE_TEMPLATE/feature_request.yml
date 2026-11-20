@@ -1,0 +1,16 @@
+name: Content suggestion
+description: Something the site should explain, or explain better.
+labels: [content]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What were you looking for?
+      description: The question you had that the site didn't answer.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Suggestion
+      description: Where it should go or how you'd word it.

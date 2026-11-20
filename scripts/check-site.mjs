@@ -42,6 +42,17 @@ export function checkOutput(dir, routes = ROUTES) {
     if (!existsSync(file)) { errs.push(`${route}: not generated (${file})`); continue }
     pages.push({ route, html: readFileSync(file, 'utf8') })
   }
+  const robots = join(dir, 'robots.txt')
+  if (!existsSync(robots)) errs.push('robots.txt: not generated')
+  else if (!readFileSync(robots, 'utf8').includes(`Sitemap: ${ORIGIN}/sitemap.xml`)) errs.push('robots.txt: no Sitemap line')
+  const sitemap = join(dir, 'sitemap.xml')
+  if (!existsSync(sitemap)) errs.push('sitemap.xml: not generated')
+  else {
+    const xml = readFileSync(sitemap, 'utf8')
+    for (const route of routes) {
+      if (!xml.includes(`<loc>${ORIGIN}${route === '/' ? '/' : route}</loc>`)) errs.push(`sitemap.xml missing ${route}`)
+    }
+  }
   return [...errs, ...checkPages(pages)]
 }
 

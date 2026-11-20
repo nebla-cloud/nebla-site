@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Problems with Nebla itself
+    url: https://github.com/nebla-cloud/nebla/issues
+    about: Bugs and feature requests for the panel, API and CLI go in the main repository.
+  - name: Questions
+    url: https://github.com/nebla-cloud/nebla/discussions
+    about: Ask and answer questions in GitHub Discussions.

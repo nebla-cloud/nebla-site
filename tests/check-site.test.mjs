@@ -42,3 +42,32 @@ test('third-party scripts and stylesheets fail', () => {
 test('same-origin and relative assets pass', () => {
   assert.deepEqual(checkPages([page('/', { head: '<script src="/_nuxt/a.js"></script><link rel="stylesheet" href="https://nebla.io/a.css">' })]), [])
 })
+
+test('output without robots.txt or sitemap.xml fails', async () => {
+  const { mkdtempSync, mkdirSync, writeFileSync } = await import('node:fs')
+  const { join } = await import('node:path')
+  const { tmpdir } = await import('node:os')
+  const { checkOutput } = await import('../scripts/check-site.mjs')
+  const dir = mkdtempSync(join(tmpdir(), 'site-'))
+  mkdirSync(join(dir, 'a'), { recursive: true })
+  writeFileSync(join(dir, 'a', 'index.html'), page('/a').html)
+  const errs = checkOutput(dir, ['/a'])
+  assert.match(errs.join('\n'), /robots\.txt/)
+  assert.match(errs.join('\n'), /sitemap\.xml/)
+  writeFileSync(join(dir, 'robots.txt'), 'User-agent: *\nAllow: /\nSitemap: https://nebla.io/sitemap.xml\n')
+  writeFileSync(join(dir, 'sitemap.xml'), '<urlset><url><loc>https://nebla.io/a</loc></url></urlset>')
+  assert.deepEqual(checkOutput(dir, ['/a']), [])
+})
+
+test('a sitemap missing a route fails', async () => {
+  const { mkdtempSync, mkdirSync, writeFileSync } = await import('node:fs')
+  const { join } = await import('node:path')
+  const { tmpdir } = await import('node:os')
+  const { checkOutput } = await import('../scripts/check-site.mjs')
+  const dir = mkdtempSync(join(tmpdir(), 'site-'))
+  mkdirSync(join(dir, 'a'), { recursive: true })
+  writeFileSync(join(dir, 'a', 'index.html'), page('/a').html)
+  writeFileSync(join(dir, 'robots.txt'), 'Sitemap: https://nebla.io/sitemap.xml\n')
+  writeFileSync(join(dir, 'sitemap.xml'), '<urlset></urlset>')
+  assert.match(checkOutput(dir, ['/a']).join('\n'), /sitemap\.xml missing \/a/)
+})

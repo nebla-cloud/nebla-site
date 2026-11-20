@@ -1,0 +1,42 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+permissions:
+  contents: read
+
+jobs:
+  site:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm lint
+      - run: pnpm typecheck
+      - run: pnpm test
+      - run: pnpm generate
+      - run: pnpm check:brand
+      - run: pnpm check:site
+      - name: Layout check
+        run: |
+          pnpm preview > /dev/null 2>&1 &
+          npx --yes wait-on@8 http://localhost:3000
+          pnpm check:layout
+          pnpm check:layout --dark
+      - if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: shots
+          path: shots/
