@@ -20,7 +20,7 @@ import { site } from '~/data/site'
         <ULink to="/privacy" class="text-muted hover:text-highlighted">Privacy</ULink>
       </nav>
     </UContainer>
-    <UContainer class="pb-10 text-xs text-dimmed">
+    <UContainer class="pb-10 text-xs text-muted">
       {{ site.copyright }}. Proxmox is a trademark of its respective owner; Nebla is an independent project.
     </UContainer>
   </footer>

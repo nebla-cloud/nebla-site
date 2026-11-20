@@ -9,7 +9,7 @@ const points = cpu.map((v, i) => `${(i / (cpu.length - 1)) * 300},${60 - v}`).jo
     <div aria-hidden="true" class="space-y-4 p-5">
       <div class="flex flex-wrap items-center gap-3">
         <span class="text-lg font-bold text-highlighted">web1</span>
-        <span class="inline-flex items-center gap-1.5 rounded-full bg-success/12 px-2.5 py-0.5 text-xs font-medium text-success"><i class="size-1.5 rounded-full bg-success" />Running</span>
+        <span class="inline-flex items-center gap-1.5 rounded-full bg-success/12 px-2.5 py-0.5 text-xs font-medium text-highlighted"><i class="size-1.5 rounded-full bg-success" />Running</span>
         <span class="ml-auto flex gap-1.5 text-xs">
           <span class="rounded-md border border-default px-2.5 py-1 text-toned">Console</span>
           <span class="rounded-md border border-default px-2.5 py-1 text-toned">Reboot</span>

@@ -20,7 +20,7 @@ export default defineNuxtConfig({
   fonts: {
     families: [{ name: 'Onest', provider: 'google', weights: [400, 500, 600, 700, 800] }]
   },
-  content: { build: { markdown: { highlight: { theme: { default: 'min-light', dark: 'min-dark' }, langs: ['yaml', 'ini', 'sh', 'bash'] } } } },
+  content: { build: { markdown: { highlight: { theme: { light: 'github-light-high-contrast', default: 'github-light-high-contrast', dark: 'github-dark-high-contrast' }, langs: ['yaml', 'dotenv', 'sh', 'bash'] } } } },
   icon: { serverBundle: 'local', clientBundle: { scan: true } },
   nitro: { prerender: { routes: [...ROUTES, '/sitemap.xml'], crawlLinks: true, failOnError: true } },
   compatibilityDate: '2026-11-01'

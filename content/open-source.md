@@ -17,7 +17,7 @@ Running an unmodified Nebla for yourself or your customers asks nothing extra of
 
 ## What's free
 
-All of the core, with no limit on nodes, clusters, projects or users. Features don't move from the free core into a paid tier.
+All of the core. The licence puts no limit on nodes, clusters, projects or users; the only limits are the quotas a panel admin chooses to set. Features don't move from the free core into a paid tier.
 
 ## What's paid
 

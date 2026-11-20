@@ -24,6 +24,8 @@ export function checkPages(pages) {
       if (titles.has(title)) errs.push(`${route}: duplicate title "${title}" (also ${titles.get(title)})`)
       titles.set(title, route)
     }
+    const neutral = html.match(/--ui-color-neutral-500:\s*var\(--color-([a-z]+)-500/)
+    if (neutral && neutral[1] !== 'ink') errs.push(`${route}: palette is ${neutral[1]}, not ink (is app/app.config.ts loaded?)`)
     for (const s of doc.querySelectorAll('script[src]')) {
       if (external(s.getAttribute('src'))) errs.push(`${route}: external script ${s.getAttribute('src')}`)
     }

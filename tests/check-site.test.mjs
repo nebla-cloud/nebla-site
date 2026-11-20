@@ -71,3 +71,12 @@ test('a sitemap missing a route fails', async () => {
   writeFileSync(join(dir, 'sitemap.xml'), '<urlset></urlset>')
   assert.match(checkOutput(dir, ['/a']).join('\n'), /sitemap\.xml missing \/a/)
 })
+
+test('pages rendered with the default Nuxt UI palette fail', () => {
+  const errs = checkPages([page('/', { head: '<style>:root{--ui-color-neutral-500: var(--color-slate-500, #62748e)}</style>' })])
+  assert.match(errs.join('\n'), /palette/)
+})
+
+test('pages rendered with the ink palette pass', () => {
+  assert.deepEqual(checkPages([page('/', { head: '<style>:root{--ui-color-neutral-500: var(--color-ink-500, )}</style>' })]), [])
+})

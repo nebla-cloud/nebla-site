@@ -74,7 +74,7 @@ volumes:
 
 Next to it, create `.env`:
 
-```ini
+```dotenv
 PANEL_BASE_URL=https://panel.example.com
 PANEL_SECRET_KEY=
 POSTGRES_PASSWORD=
