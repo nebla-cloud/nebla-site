@@ -35,7 +35,7 @@ const next = ['Volumes, snapshots and backups', 'Private networks and firewalls'
 
 <template>
   <div>
-    <PageIntro glow title="What Nebla does" lede="Nebla turns Proxmox VE into a self-service cloud: projects, servers, images, SSH keys and API tokens, with a panel and a CLI on the same API." />
+    <PageIntro title="What Nebla does" lede="Nebla turns Proxmox VE into a self-service cloud: projects, servers, images, SSH keys and API tokens, with a panel and a CLI on the same API." />
 
     <UContainer class="divide-y divide-default">
       <FeatureRow title="Servers, from create to delete">

@@ -3,7 +3,7 @@ import { site } from '~/data/site'
 </script>
 
 <template>
-  <section class="aurora-glow">
+  <section>
     <UContainer class="grid grid-cols-[minmax(0,1fr)] items-center gap-12 pt-16 pb-20 md:pt-24 lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] lg:gap-16 lg:pb-28">
       <div>
         <h1 class="text-[clamp(2.6rem,6vw,4.5rem)] leading-[1.02] font-extrabold tracking-[-0.035em] text-highlighted">

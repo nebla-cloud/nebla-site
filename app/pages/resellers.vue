@@ -21,7 +21,7 @@ const module = [
 
 <template>
   <div>
-    <PageIntro glow title="Sell VMs from your own Proxmox clusters" lede="Nebla's open core is multi-tenant from the start, so you can put customers on your hardware today. A commercial module for billing and branding is in development." />
+    <PageIntro title="Sell VMs from your own Proxmox clusters" lede="Nebla's open core is multi-tenant from the start, so you can put customers on your hardware today. A commercial module for billing and branding is in development." />
 
     <UContainer class="pb-20">
       <h2 class="text-[clamp(1.6rem,2.8vw,2.2rem)] leading-[1.12] font-bold tracking-[-0.025em] text-highlighted">In the open core today</h2>

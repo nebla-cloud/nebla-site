@@ -7,7 +7,7 @@ usePageSeo(
 
 <template>
   <div>
-    <HeroAurora />
+    <HomeHero />
     <HowItWorks />
     <BothWays />
     <AudiencePaths />

@@ -15,7 +15,9 @@ function rules() {
     ...bannedTerms().map(t => ({ name: 'banned term', re: new RegExp(`\\b${t}\\b`, 'i') })),
     { name: 'arrow in link text', re: /\S\s*→/, ext: ['.vue', '.md'] },
     { name: 'brand-red hex', re: /#d50c2d\b/i },
-    { name: 'personal mailbox', re: /@(gmail|googlemail|outlook|hotmail|icloud)\.com/i }
+    { name: 'personal mailbox', re: /@(gmail|googlemail|outlook|hotmail|icloud)\.com/i },
+    // The aurora glow was retired: the gradient appears only in the logo and small accents.
+    { name: 'aurora glow', re: /aurora-glow|--glow-/, ext: ['.vue', '.css', '.ts'] }
   ]
 }
 

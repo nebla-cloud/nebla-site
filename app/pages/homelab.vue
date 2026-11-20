@@ -13,7 +13,7 @@ const lines = [
 
 <template>
   <div>
-    <PageIntro glow title="A cloud console for the Proxmox box under your desk" lede="You already run Proxmox. Nebla gives you the part that makes a public cloud pleasant to use: pick an image, pick a size, get a server with your SSH key in it.">
+    <PageIntro title="A cloud console for the Proxmox box under your desk" lede="You already run Proxmox. Nebla gives you the part that makes a public cloud pleasant to use: pick an image, pick a size, get a server with your SSH key in it.">
       <UButton to="/install" size="xl" class="mt-8" label="Install Nebla" />
     </PageIntro>
 

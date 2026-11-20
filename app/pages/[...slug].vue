@@ -8,12 +8,10 @@ usePageSeo(page.value.title, page.value.description)
 
 <template>
   <div v-if="page">
-    <div class="aurora-glow">
-      <UContainer class="pt-16 pb-24 md:pt-24">
-        <article class="prose-page max-w-[68ch]">
-          <ContentRenderer :value="page" />
-        </article>
-      </UContainer>
-    </div>
+    <UContainer class="pt-16 pb-24 md:pt-24">
+      <article class="prose-page max-w-[68ch]">
+        <ContentRenderer :value="page" />
+      </article>
+    </UContainer>
   </div>
 </template>

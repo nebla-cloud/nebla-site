@@ -43,3 +43,8 @@ test('directories are scanned recursively', () => {
   const file = tmp('deep.md', 'fine')
   assert.deepEqual(scanPaths([join(file, '..')]), [])
 })
+
+test('the retired aurora glow is caught', () => {
+  assert.equal(scanPaths([tmp('a.vue', '<section class="aurora-glow">')]).length, 1)
+  assert.equal(scanPaths([tmp('a.css', ':root { --glow-a: #B9F1DC; }')]).length, 1)
+})
