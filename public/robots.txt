@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://nebla.io/sitemap.xml
+Sitemap: https://nebla.dev/sitemap.xml

@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url'
 import { parse } from 'node-html-parser'
 import { ROUTES } from './routes.mjs'
 
-const ORIGIN = 'https://nebla.io'
+const ORIGIN = 'https://nebla.dev'
 
 const external = (url) => /^(https?:)?\/\//.test(url) && !url.startsWith(ORIGIN)
 

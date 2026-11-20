@@ -1,6 +1,6 @@
 export const site = {
   name: 'Nebla',
-  url: 'https://nebla.io',
+  url: 'https://nebla.dev',
   repo: 'https://github.com/nebla-cloud/nebla',
   image: 'ghcr.io/nebla-cloud/nebla',
   brew: 'brew install nebla-cloud/tap/nebla',

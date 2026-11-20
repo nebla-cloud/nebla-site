@@ -1,5 +1,5 @@
 name: Site problem
-description: Something on nebla.io is broken, wrong or hard to read.
+description: Something on nebla.dev is broken, wrong or hard to read.
 labels: [bug]
 body:
   - type: input
@@ -7,7 +7,7 @@ body:
     attributes:
       label: Page
       description: The URL where you saw it.
-      placeholder: https://nebla.io/install
+      placeholder: https://nebla.dev/install
     validations:
       required: true
   - type: textarea

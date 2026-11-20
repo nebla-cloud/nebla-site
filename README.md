@@ -7,7 +7,7 @@
 
 # nebla-site
 
-The source of [nebla.io](https://nebla.io), the website for Nebla, the open-source cloud console for Proxmox VE. The product itself lives in [nebla-cloud/nebla](https://github.com/nebla-cloud/nebla).
+The source of [nebla.dev](https://nebla.dev), the website for Nebla, the open-source cloud console for Proxmox VE. The product itself lives in [nebla-cloud/nebla](https://github.com/nebla-cloud/nebla).
 
 The site is static and built with Nuxt 4, Nuxt UI 4 and Nuxt Content. Long pages such as the install guide are markdown files in `content/`. The landing, features, homelab and resellers pages are Vue pages in `app/pages/`.
 
