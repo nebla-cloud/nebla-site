@@ -69,8 +69,25 @@ function card(w, h) {
   return svg(w, h, `${glow}${inner}<path d="${tag.d}" fill="#4E5763"/>`)
 }
 
-function tile(size) {
-  const pad = size * 0.16
+// Profile banner: glow across the full canvas, lockup and tagline centred in
+// the safe area (YouTube crops to a central strip on most devices).
+function banner(w, h, safeH = h) {
+  const top = (h - safeH) / 2
+  const l = lockup(m.ink, safeH * 0.2)
+  const lx = (w - l.width) / 2
+  const tSize = safeH * 0.065
+  const gap = safeH * 0.1
+  const ly = top + (safeH - (l.height + gap + tSize)) / 2
+  const probe = text(regular, m.tagline, tSize, 0, 0, 0)
+  const tag = text(regular, m.tagline, tSize, 0, (w - probe.width) / 2, ly + l.height + gap + tSize * 0.75)
+  const glow = `<defs><filter id="blur" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="${h * 0.12}"/></filter></defs>
+<rect width="${w}" height="${h}" fill="${m.page}"/>
+<g filter="url(#blur)"><ellipse cx="${w * 0.12}" cy="${h * 0.2}" rx="${w * 0.2}" ry="${h * 0.45}" fill="${m.glow[0]}"/><ellipse cx="${w * 0.5}" cy="${h * 0.05}" rx="${w * 0.2}" ry="${h * 0.35}" fill="${m.glow[1]}"/><ellipse cx="${w * 0.88}" cy="${h * 0.25}" rx="${w * 0.2}" ry="${h * 0.45}" fill="${m.glow[2]}"/></g>`
+  return svg(w, h, `${glow}${lockup(m.ink, safeH * 0.2, lx, ly).body}<path d="${tag.d}" fill="#4E5763"/>`)
+}
+
+function tile(size, padRatio = 0.16) {
+  const pad = size * padRatio
   return svg(size, size, `<rect width="${size}" height="${size}" fill="${m.page}"/><svg x="${pad}" y="${pad}" width="${size - 2 * pad}" height="${size - 2 * pad}" viewBox="0 0 64 64">${markInner('gradient', 'nebla-arch')}</svg>`)
 }
 
@@ -94,4 +111,11 @@ write(join(pub, 'favicon.svg'), markSvg('gradient'))
 write(join(pub, 'apple-touch-icon.png'), png(tile(180), 180))
 write(join(pub, 'icon-512.png'), png(tile(512), 512))
 write(join(pub, 'favicon.ico'), await pngToIco([16, 32, 48].map(s => png(markSvg('gradient'), s))))
+const social = join(out, 'social')
+mkdirSync(social, { recursive: true })
+// Avatars are cropped to a circle, so the arch gets extra padding.
+write(join(social, 'avatar-1000.png'), png(tile(1000, 0.22), 1000))
+write(join(social, 'banner-1500x500.png'), png(banner(1500, 500), 1500))
+write(join(social, 'banner-3000x1000.png'), png(banner(3000, 1000), 3000))
+write(join(social, 'banner-youtube-2560x1440.png'), png(banner(2560, 1440, 423), 2560))
 console.log('brand: assets written to brand/out and public/')
