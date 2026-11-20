@@ -16,7 +16,7 @@ const points = cpu.map((v, i) => `${(i / (cpu.length - 1)) * 300},${60 - v}`).jo
           <span class="rounded-md border border-default px-2.5 py-1 text-toned">Power off</span>
         </span>
       </div>
-      <dl class="grid grid-cols-2 gap-x-6 gap-y-2 sm:grid-cols-4">
+      <dl class="grid grid-cols-2 gap-x-6 gap-y-2 @lg:grid-cols-4">
         <div><dt class="text-xs text-muted">Image</dt><dd class="font-medium text-highlighted">Debian 13</dd></div>
         <div><dt class="text-xs text-muted">Type</dt><dd class="font-medium text-highlighted">small-2</dd></div>
         <div><dt class="text-xs text-muted">IPv4</dt><dd class="font-medium text-highlighted tabular-nums">203.0.113.10</dd></div>

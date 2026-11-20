@@ -10,12 +10,12 @@
           </p>
           <ULink to="/homelab" class="mt-6 inline-block font-semibold text-highlighted underline decoration-accented underline-offset-4 hover:decoration-current">Nebla for homelabs</ULink>
         </div>
-        <div class="bg-inverted p-8 text-inverted md:p-12">
+        <div class="bg-ink-950 p-8 text-ink-50 md:p-12 dark:bg-ink-900">
           <h3 class="text-2xl font-bold tracking-[-0.02em]">For hosting resellers</h3>
           <p class="mt-3 max-w-[44ch] leading-relaxed opacity-80">
             Projects, quotas and tenant isolation are built in, so each customer sees only their own servers. A commercial module adds billing, self-signup and your own branding.
           </p>
-          <ULink to="/resellers" class="mt-6 inline-block font-semibold text-inverted underline decoration-current/40 underline-offset-4 hover:decoration-current">Nebla for resellers</ULink>
+          <ULink to="/resellers" class="mt-6 inline-block font-semibold text-ink-50 underline decoration-current/40 underline-offset-4 hover:decoration-current">Nebla for resellers</ULink>
         </div>
       </div>
     </UContainer>
