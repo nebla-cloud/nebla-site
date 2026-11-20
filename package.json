@@ -21,6 +21,7 @@
     "brand": "node brand/build.mjs"
   },
   "devDependencies": {
+    "@fontsource/onest": "^5.3.1",
     "@iconify-json/lucide": "^1.2.157",
     "@iconify-json/simple-icons": "^1.2.103",
     "@nuxt/eslint": "1.17.0",

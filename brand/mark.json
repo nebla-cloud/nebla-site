@@ -1,0 +1,11 @@
+{
+  "path": "M16 52V31a16 16 0 0 1 32 0v21",
+  "stroke": 11,
+  "gradient": ["#2FC795", "#4C9BEA", "#EE6F95"],
+  "ink": "#15181D",
+  "white": "#F4F6F8",
+  "page": "#FBFCFD",
+  "glow": ["#B9F1DC", "#BFDDFB", "#FFD2DE"],
+  "wordmark": { "text": "nebla", "tracking": -0.03 },
+  "tagline": "Your Proxmox, as a cloud console."
+}

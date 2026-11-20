@@ -3,6 +3,7 @@ import { ROUTES } from './scripts/routes.mjs'
 export default defineNuxtConfig({
   modules: ['@nuxt/eslint', '@nuxt/ui', '@nuxt/content', '@nuxt/fonts'],
   devtools: { enabled: false },
+  components: [{ path: '~/components', pathPrefix: false }],
   css: ['~/assets/css/main.css'],
   app: {
     head: {
