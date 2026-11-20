@@ -1,4 +1,4 @@
-import { ROUTES } from './scripts/routes.mjs'
+import { REDIRECTS, ROUTES } from './scripts/routes.mjs'
 
 export default defineNuxtConfig({
   modules: ['@nuxt/eslint', '@nuxt/ui', '@nuxt/content', '@nuxt/fonts'],
@@ -22,6 +22,7 @@ export default defineNuxtConfig({
   },
   content: { build: { markdown: { highlight: { theme: { light: 'github-light-high-contrast', default: 'github-light-high-contrast', dark: 'github-dark-high-contrast' }, langs: ['yaml', 'dotenv', 'sh', 'bash'] } } } },
   icon: { serverBundle: 'local', clientBundle: { scan: true } },
-  nitro: { prerender: { routes: [...ROUTES, '/sitemap.xml'], crawlLinks: true, failOnError: true } },
+  routeRules: Object.fromEntries(Object.entries(REDIRECTS).map(([from, to]) => [from, { redirect: { to, statusCode: 302 } }])),
+  nitro: { prerender: { routes: [...ROUTES, ...Object.keys(REDIRECTS), '/sitemap.xml'], crawlLinks: true, failOnError: true } },
   compatibilityDate: '2026-11-01'
 })

@@ -2,7 +2,7 @@ import { existsSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { parse } from 'node-html-parser'
-import { ROUTES } from './routes.mjs'
+import { REDIRECTS, ROUTES } from './routes.mjs'
 
 const ORIGIN = 'https://nebla.dev'
 
@@ -36,7 +36,13 @@ export function checkPages(pages) {
   return errs
 }
 
-export function checkOutput(dir, routes = ROUTES) {
+// A prerendered redirect is an HTML page whose meta refresh points at the target.
+export function checkRedirect(route, html, to) {
+  const content = parse(html).querySelector('meta[http-equiv="refresh"]')?.getAttribute('content') ?? ''
+  return content.includes(`url=${to}`) ? [] : [`${route}: does not redirect to ${to}`]
+}
+
+export function checkOutput(dir, routes = ROUTES, redirects = REDIRECTS) {
   const errs = []
   const pages = []
   for (const route of routes) {
@@ -54,6 +60,11 @@ export function checkOutput(dir, routes = ROUTES) {
     for (const route of routes) {
       if (!xml.includes(`<loc>${ORIGIN}${route === '/' ? '/' : route}</loc>`)) errs.push(`sitemap.xml missing ${route}`)
     }
+  }
+  for (const [route, to] of Object.entries(redirects)) {
+    const file = join(dir, route, 'index.html')
+    if (!existsSync(file)) errs.push(`${route}: redirect not generated (${file})`)
+    else errs.push(...checkRedirect(route, readFileSync(file, 'utf8'), to))
   }
   return [...errs, ...checkPages(pages)]
 }

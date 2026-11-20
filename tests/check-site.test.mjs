@@ -1,6 +1,6 @@
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
-import { checkPages } from '../scripts/check-site.mjs'
+import { checkPages, checkRedirect } from '../scripts/check-site.mjs'
 
 const page = (route, o = {}) => ({
   route,
@@ -51,12 +51,12 @@ test('output without robots.txt or sitemap.xml fails', async () => {
   const dir = mkdtempSync(join(tmpdir(), 'site-'))
   mkdirSync(join(dir, 'a'), { recursive: true })
   writeFileSync(join(dir, 'a', 'index.html'), page('/a').html)
-  const errs = checkOutput(dir, ['/a'])
+  const errs = checkOutput(dir, ['/a'], {})
   assert.match(errs.join('\n'), /robots\.txt/)
   assert.match(errs.join('\n'), /sitemap\.xml/)
   writeFileSync(join(dir, 'robots.txt'), 'User-agent: *\nAllow: /\nSitemap: https://nebla.dev/sitemap.xml\n')
   writeFileSync(join(dir, 'sitemap.xml'), '<urlset><url><loc>https://nebla.dev/a</loc></url></urlset>')
-  assert.deepEqual(checkOutput(dir, ['/a']), [])
+  assert.deepEqual(checkOutput(dir, ['/a'], {}), [])
 })
 
 test('a sitemap missing a route fails', async () => {
@@ -69,7 +69,7 @@ test('a sitemap missing a route fails', async () => {
   writeFileSync(join(dir, 'a', 'index.html'), page('/a').html)
   writeFileSync(join(dir, 'robots.txt'), 'Sitemap: https://nebla.dev/sitemap.xml\n')
   writeFileSync(join(dir, 'sitemap.xml'), '<urlset></urlset>')
-  assert.match(checkOutput(dir, ['/a']).join('\n'), /sitemap\.xml missing \/a/)
+  assert.match(checkOutput(dir, ['/a'], {}).join('\n'), /sitemap\.xml missing \/a/)
 })
 
 test('pages rendered with the default Nuxt UI palette fail', () => {
@@ -79,4 +79,10 @@ test('pages rendered with the default Nuxt UI palette fail', () => {
 
 test('pages rendered with the ink palette pass', () => {
   assert.deepEqual(checkPages([page('/', { head: '<style>:root{--ui-color-neutral-500: var(--color-ink-500, )}</style>' })]), [])
+})
+
+test('redirect pages must refresh to their target', () => {
+  const to = 'https://discord.gg/abc'
+  assert.deepEqual(checkRedirect('/discord', `<html><head><meta http-equiv="refresh" content="0; url=${to}"></head></html>`, to), [])
+  assert.match(checkRedirect('/discord', '<html><head></head></html>', to).join(), /does not redirect/)
 })
