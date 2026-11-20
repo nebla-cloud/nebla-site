@@ -1,9 +1,17 @@
 <script setup lang="ts">
-usePageSeo('Nebla: your Proxmox, as a cloud console', 'Placeholder.')
+usePageSeo(
+  'Nebla: your Proxmox, as a cloud console',
+  'Nebla is an open-source panel and CLI for Proxmox VE. Create and manage VMs from a clean console. One Docker container, nothing installed on the host.'
+)
 </script>
 
 <template>
-  <UContainer class="py-24">
-    <h1 class="text-4xl font-bold">Nebla</h1>
-  </UContainer>
+  <div>
+    <HeroAurora />
+    <HowItWorks />
+    <BothWays />
+    <AudiencePaths />
+    <OpenSourceBand />
+    <ComposeTeaser />
+  </div>
 </template>
