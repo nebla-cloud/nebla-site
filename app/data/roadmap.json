@@ -1,0 +1,497 @@
+{
+  "board": "https://github.com/orgs/nebla-cloud/projects/1",
+  "releases": [
+    "v0.1",
+    "v0.2",
+    "v0.3",
+    "v0.4",
+    "v0.5",
+    "v1.0",
+    "Later"
+  ],
+  "statuses": [
+    "Planned",
+    "In design",
+    "In progress",
+    "Shipped"
+  ],
+  "items": [
+    {
+      "title": "Servers, actions and the REST API",
+      "body": "Create, power, rebuild, resize and delete servers. Every change returns an action you can wait on. OpenAPI spec included.",
+      "url": null,
+      "status": "Shipped",
+      "release": "v0.1",
+      "area": "Compute",
+      "size": null
+    },
+    {
+      "title": "nebla CLI with releases and a Homebrew tap",
+      "body": "The nebla CLI covers the same things as the panel, with contexts and table, JSON or YAML output.",
+      "url": null,
+      "status": "Shipped",
+      "release": "v0.1",
+      "area": "CLI",
+      "size": null
+    },
+    {
+      "title": "Built-in OS template catalog",
+      "body": "Admins enable official cloud images (Debian, Ubuntu, Rocky, Alma, Fedora) per location in one click.",
+      "url": null,
+      "status": "Shipped",
+      "release": "v0.1",
+      "area": "Images",
+      "size": null
+    },
+    {
+      "title": "Web panel: servers and one-page create",
+      "body": "Server list and a single-page create flow with live availability and quota.",
+      "url": null,
+      "status": "Shipped",
+      "release": "v0.1",
+      "area": "Web UI",
+      "size": null
+    },
+    {
+      "title": "Console, graphs, rebuild, resize, labels and activity",
+      "body": "Browser console, CPU/disk/network graphs, rebuild and resize, labels with filtering, and server and project activity.",
+      "url": null,
+      "status": "Shipped",
+      "release": "v0.1",
+      "area": "Web UI",
+      "size": null
+    },
+    {
+      "title": "Clear action errors",
+      "body": "Failed actions show a plain, member-safe message. Technical detail stays admin-only.",
+      "url": null,
+      "status": "Shipped",
+      "release": "v0.1",
+      "area": "Platform",
+      "size": null
+    },
+    {
+      "title": "One-line Proxmox setup",
+      "body": "Connect a Proxmox node by running one command on it and pasting the result back.",
+      "url": null,
+      "status": "Shipped",
+      "release": "v0.2",
+      "area": "Platform",
+      "size": null
+    },
+    {
+      "title": "Members, invites and API tokens",
+      "body": "Project members with roles, invite links, and per-project API tokens shown once.",
+      "url": null,
+      "status": "Shipped",
+      "release": "v0.2",
+      "area": "Access",
+      "size": null
+    },
+    {
+      "title": "Account page with two-factor login",
+      "body": "Change your password and turn on TOTP two-factor login.",
+      "url": null,
+      "status": "Shipped",
+      "release": "v0.2",
+      "area": "Access",
+      "size": null
+    },
+    {
+      "title": "Passkey login",
+      "body": "Log in with a passkey and manage your passkeys from the account page. Merged; ships in v0.3.",
+      "url": null,
+      "status": "Shipped",
+      "release": "v0.3",
+      "area": "Access",
+      "size": null
+    },
+    {
+      "title": "Admin screens",
+      "body": "Admin pages for users, projects and quotas, settings, hand-registered images and activity with technical detail. Merged; ships in v0.3.",
+      "url": null,
+      "status": "Shipped",
+      "release": "v0.3",
+      "area": "Admin",
+      "size": null
+    },
+    {
+      "title": "Volumes",
+      "body": "Extra disks you can create, attach, detach and resize, kept when a server is deleted or rebuilt. In the panel and the CLI.",
+      "url": null,
+      "status": "Shipped",
+      "release": "v0.3",
+      "area": "Storage",
+      "size": "L"
+    },
+    {
+      "title": "Firewalls",
+      "body": "User-defined firewall rules you can apply to servers, on top of today's anti-spoofing.",
+      "url": null,
+      "status": "Shipped",
+      "release": "v0.3",
+      "area": "Networking",
+      "size": "M"
+    },
+    {
+      "title": "Panel redesign",
+      "body": "A new design system and app shell built around the logo's arch, equally at home in light and dark. Includes an empty server list with a matching `nebla server create` example, and \"Soon\" entries in the nav for volumes and firewalls until their pages ship.",
+      "url": null,
+      "status": "Shipped",
+      "release": "v0.3",
+      "area": "Web UI",
+      "size": "L"
+    },
+    {
+      "title": "Live metrics on the server Overview",
+      "body": "Live CPU, network and disk cards on a server's Overview tab.",
+      "url": null,
+      "status": "Shipped",
+      "release": "v0.3",
+      "area": "Web UI",
+      "size": "S"
+    },
+    {
+      "title": "Recent activity on the server Overview",
+      "body": "The server's last three actions on its Overview tab.",
+      "url": null,
+      "status": "Shipped",
+      "release": "v0.3",
+      "area": "Web UI",
+      "size": "S"
+    },
+    {
+      "title": "Server list filters and CPU sparklines",
+      "body": "Filter the server list by status (all, running, off) and see a small CPU graph on each row.",
+      "url": null,
+      "status": "Shipped",
+      "release": "v0.3",
+      "area": "Web UI",
+      "size": "S"
+    },
+    {
+      "title": "Command palette",
+      "body": "Press ⌘K to search and jump to pages, servers, SSH keys and admin pages.",
+      "url": null,
+      "status": "Shipped",
+      "release": "v0.3",
+      "area": "Web UI",
+      "size": "M"
+    },
+    {
+      "title": "Private networks",
+      "body": "Private networks between a project's servers, built on Proxmox SDN.",
+      "url": null,
+      "status": "In design",
+      "release": "v0.3",
+      "area": "Networking",
+      "size": "L"
+    },
+    {
+      "title": "Floating IPs",
+      "body": "IPs you can move between servers for failover.",
+      "url": null,
+      "status": "In design",
+      "release": "v0.3",
+      "area": "Networking",
+      "size": "M"
+    },
+    {
+      "title": "Snapshots",
+      "body": "Save a copy of a server's boot disk and restore it later.",
+      "url": null,
+      "status": "In design",
+      "release": "v0.3",
+      "area": "Storage",
+      "size": "M"
+    },
+    {
+      "title": "Backups with Proxmox Backup Server",
+      "body": "Scheduled and on-demand server backups stored on PBS, with restore.",
+      "url": null,
+      "status": "Planned",
+      "release": "v0.3",
+      "area": "Storage",
+      "size": "M"
+    },
+    {
+      "title": "Primary IP management",
+      "body": "Keep a server's IP when it's deleted and assign it to another server later.",
+      "url": null,
+      "status": "Planned",
+      "release": "v0.3",
+      "area": "Networking",
+      "size": "M"
+    },
+    {
+      "title": "Go SDK",
+      "body": "A documented, versioned Go client for the Nebla API.",
+      "url": null,
+      "status": "Planned",
+      "release": "v0.4",
+      "area": "Integrations",
+      "size": "S"
+    },
+    {
+      "title": "Terraform provider",
+      "body": "Manage servers, keys, networks and volumes as code. Built on the Go SDK.",
+      "url": null,
+      "status": "Planned",
+      "release": "v0.4",
+      "area": "Integrations",
+      "size": "L"
+    },
+    {
+      "title": "OIDC / SSO login",
+      "body": "Log in through an identity provider such as Authentik, Keycloak or any OIDC provider.",
+      "url": null,
+      "status": "Planned",
+      "release": "v0.4",
+      "area": "Access",
+      "size": "M"
+    },
+    {
+      "title": "Webhooks and audit log export",
+      "body": "Send activity events to your own endpoints and export the audit log.",
+      "url": null,
+      "status": "Planned",
+      "release": "v0.4",
+      "area": "Integrations",
+      "size": "M"
+    },
+    {
+      "title": "Metrics alerts",
+      "body": "Alerts on CPU, disk and network thresholds, sent by email or webhook.",
+      "url": null,
+      "status": "Planned",
+      "release": "v0.4",
+      "area": "Observability",
+      "size": "M"
+    },
+    {
+      "title": "Delete and rebuild protection",
+      "body": "Lock a server so it can't be deleted or rebuilt by mistake.",
+      "url": null,
+      "status": "Planned",
+      "release": "v0.4",
+      "area": "Compute",
+      "size": "S"
+    },
+    {
+      "title": "Reset root password",
+      "body": "Set a new root password on a running server through the guest agent.",
+      "url": null,
+      "status": "Planned",
+      "release": "v0.4",
+      "area": "Compute",
+      "size": "S"
+    },
+    {
+      "title": "Custom images",
+      "body": "Turn a snapshot into an image and create servers from it, or upload your own qcow2.",
+      "url": null,
+      "status": "Planned",
+      "release": "v0.4",
+      "area": "Images",
+      "size": "M"
+    },
+    {
+      "title": "Memory usage in server metrics",
+      "body": "Show memory use next to CPU, disk and network in a server's graphs and Overview.",
+      "url": null,
+      "status": "Planned",
+      "release": "v0.4",
+      "area": "Observability",
+      "size": "S"
+    },
+    {
+      "title": "Placement rules and live migration",
+      "body": "Smarter placement across a cluster's nodes and moving running servers between nodes.",
+      "url": null,
+      "status": "Planned",
+      "release": "v0.5",
+      "area": "Compute",
+      "size": "L"
+    },
+    {
+      "title": "IPv6: routed /64 per server and IPv6-only pools",
+      "body": "Servers already get an optional IPv6 address. This adds a routed /64 per server and IPv6-only pools.",
+      "url": null,
+      "status": "Planned",
+      "release": "v0.5",
+      "area": "Networking",
+      "size": "M"
+    },
+    {
+      "title": "Mobile-friendly web panel",
+      "body": "Check status and power-cycle servers from a phone.",
+      "url": null,
+      "status": "Planned",
+      "release": "v0.5",
+      "area": "Web UI",
+      "size": "M"
+    },
+    {
+      "title": "Docs site",
+      "body": "A real documentation site with guides and an API reference.",
+      "url": null,
+      "status": "Planned",
+      "release": "v0.5",
+      "area": "Docs",
+      "size": "M"
+    },
+    {
+      "title": "One-click apps",
+      "body": "An official catalog of ready-to-run apps, such as Docker, Nextcloud and WordPress, set up on a new server through cloud-init.",
+      "url": null,
+      "status": "Planned",
+      "release": "v0.5",
+      "area": "Images",
+      "size": "L"
+    },
+    {
+      "title": "OS template store",
+      "body": "A larger, browsable catalog of OS images that admins add from the panel, extending today's built-in templates.",
+      "url": null,
+      "status": "Planned",
+      "release": "v0.5",
+      "area": "Images",
+      "size": "M"
+    },
+    {
+      "title": "Rescue mode",
+      "body": "Boot a server into a rescue system to repair a broken OS or recover files.",
+      "url": null,
+      "status": "Planned",
+      "release": "v0.5",
+      "area": "Compute",
+      "size": "M"
+    },
+    {
+      "title": "Mount an ISO",
+      "body": "Attach an ISO to a server and install any OS by hand through the console.",
+      "url": null,
+      "status": "Planned",
+      "release": "v0.5",
+      "area": "Compute",
+      "size": "M"
+    },
+    {
+      "title": "Reverse DNS",
+      "body": "Set PTR records for your IPs, through a DNS backend such as PowerDNS.",
+      "url": null,
+      "status": "Planned",
+      "release": "v0.5",
+      "area": "Networking",
+      "size": "M"
+    },
+    {
+      "title": "Placement groups",
+      "body": "Spread a set of servers across different nodes for redundancy.",
+      "url": null,
+      "status": "Planned",
+      "release": "v0.5",
+      "area": "Compute",
+      "size": "S"
+    },
+    {
+      "title": "v1.0: stable API and upgrade path",
+      "body": "A stability promise for the API and CLI, a tested upgrade path, and a security review.",
+      "url": null,
+      "status": "Planned",
+      "release": "v1.0",
+      "area": "Platform",
+      "size": "L"
+    },
+    {
+      "title": "Reseller module (commercial)",
+      "body": "A paid add-on for resellers: billing integration, customer self-signup, white-label branding, usage metering, and reseller/sub-customer hierarchy. The core stays free and complete.",
+      "url": null,
+      "status": "Planned",
+      "release": "v1.0",
+      "area": "Commercial",
+      "size": "XL"
+    },
+    {
+      "title": "Load balancers and managed certificates",
+      "body": "Load balancers in front of servers, with managed TLS certificates.",
+      "url": null,
+      "status": "Planned",
+      "release": "Later",
+      "area": "Networking",
+      "size": "XL"
+    },
+    {
+      "title": "Optional node agent",
+      "body": "An optional agent on Proxmox nodes for richer metrics, a faster console and host-level firewalling. Nebla keeps working without it.",
+      "url": null,
+      "status": "Planned",
+      "release": "Later",
+      "area": "Platform",
+      "size": "L"
+    },
+    {
+      "title": "High availability for the panel",
+      "body": "Run more than one panel instance so the panel itself survives a failure.",
+      "url": null,
+      "status": "Planned",
+      "release": "Later",
+      "area": "Platform",
+      "size": "L"
+    },
+    {
+      "title": "Translations (i18n)",
+      "body": "The web panel in more languages.",
+      "url": null,
+      "status": "Planned",
+      "release": "Later",
+      "area": "Web UI",
+      "size": "M"
+    },
+    {
+      "title": "LXC containers",
+      "body": "Exploring. Nebla is VMs only today.",
+      "url": null,
+      "status": "Planned",
+      "release": "Later",
+      "area": "Compute",
+      "size": "XL"
+    },
+    {
+      "title": "Community apps and templates",
+      "body": "Apps and OS templates from the community, submitted as pull requests to a reviewed nebla-cloud index. Admins choose which sources to turn on and can add their own.",
+      "url": null,
+      "status": "Planned",
+      "release": "Later",
+      "area": "Images",
+      "size": "L"
+    },
+    {
+      "title": "Usage reports",
+      "body": "Resource-hours per project and server, with no billing. The reseller module can build on it.",
+      "url": null,
+      "status": "Planned",
+      "release": "Later",
+      "area": "Observability",
+      "size": "M"
+    },
+    {
+      "title": "DNS zones",
+      "body": "Host DNS zones and records from the panel.",
+      "url": null,
+      "status": "Planned",
+      "release": "Later",
+      "area": "Networking",
+      "size": "L"
+    },
+    {
+      "title": "Object storage (S3)",
+      "body": "S3-compatible buckets, for example backed by Ceph RGW.",
+      "url": null,
+      "status": "Planned",
+      "release": "Later",
+      "area": "Storage",
+      "size": "XL"
+    }
+  ]
+}

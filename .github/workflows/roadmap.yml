@@ -1,0 +1,43 @@
+name: Roadmap
+
+# Copies the public roadmap board (github.com/orgs/nebla-cloud/projects/1) into app/data/roadmap.json once a day.
+# A change is committed to main, which redeploys the site. The site build itself never calls GitHub.
+on:
+  schedule:
+    - cron: '17 5 * * *'
+  workflow_dispatch:
+
+concurrency:
+  group: roadmap
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+      - name: Sync from the board
+        env:
+          # Reading an organization's project needs a token with read access to org projects.
+          # ROADMAP_TOKEN: fine-grained token on nebla-cloud with Projects read-only. Falls back to the job token.
+          GITHUB_TOKEN: ${{ secrets.ROADMAP_TOKEN || github.token }}
+        run: node scripts/sync-roadmap.mjs
+      - name: Check the copy rules
+        run: node scripts/check-brand.mjs app/data/roadmap.json
+      - name: Commit a change
+        run: |
+          if git diff --quiet -- app/data/roadmap.json; then
+            echo "No change"
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add app/data/roadmap.json
+          git commit -m 'chore(roadmap): sync from the GitHub board'
+          git push
