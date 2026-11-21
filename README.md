@@ -58,7 +58,7 @@ nebla.dev runs on Coolify from the `Dockerfile`: it builds the site, runs `check
 
 ## Panel screenshots
 
-`public/screens/` holds real screenshots of the panel in light and dark, taken from the core repo's UI harness (`internal/uiharness`) on demo data, and `PanelShot` shows them in a window frame. Retake them whenever the panel's look changes.
+`public/screens/` holds real screenshots of the panel in light and dark, taken from the core repo's UI harness (`internal/uiharness`) on demo data, and `PanelShot` shows them in a window frame. Retake them whenever the panel's look changes with `pnpm capture:panel`: it builds the panel in `../nebla` (or `--core=<path>`), runs the harness, sets up a Home lab project with three servers in your installed Chrome, and writes all six images. The fake Proxmox only returns a five-point ramp for metrics, so the script answers the metrics API with a seeded hour of realistic data per server. `--skip-build` reuses the current `web/dist`. If an image's height changes, update it in `PanelShot`.
 
 ## Licence
 
