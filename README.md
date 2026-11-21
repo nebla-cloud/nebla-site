@@ -19,7 +19,7 @@ The docs describe the product on the core repo's `main`. Check facts against its
 
 ## Roadmap
 
-`/roadmap` renders `app/data/roadmap.json`, a copy of the public [roadmap board](https://github.com/orgs/nebla-cloud/projects/1). `.github/workflows/roadmap.yml` refreshes it once a day and commits any change, which redeploys the site. To refresh it by hand, run `node scripts/sync-roadmap.mjs`; it uses `GITHUB_TOKEN` or your `gh` login. The workflow reads the board with the `ROADMAP_TOKEN` secret when it is set (a fine-grained token with read access to the organization's projects), otherwise with the job's own token.
+`/roadmap` renders `app/data/roadmap.json`, a copy of the public [roadmap board](https://github.com/orgs/nebla-cloud/projects/1). `.github/workflows/roadmap.yml` refreshes it once a day and commits any change, which redeploys the site. To refresh it by hand, run `node scripts/sync-roadmap.mjs`; it uses `GITHUB_TOKEN` or your `gh` login. The workflow reads the board with the `ROADMAP_TOKEN` repository secret, a fine-grained token on the nebla-cloud organization with read-only access to Projects. The job's own token can't read the board's items, so without the secret the workflow skips the sync with a warning.
 
 ## Develop
 

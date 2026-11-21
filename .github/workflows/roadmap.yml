@@ -24,10 +24,15 @@ jobs:
           node-version: 24
       - name: Sync from the board
         env:
-          # Reading an organization's project needs a token with read access to org projects.
-          # ROADMAP_TOKEN: fine-grained token on nebla-cloud with Projects read-only. Falls back to the job token.
-          GITHUB_TOKEN: ${{ secrets.ROADMAP_TOKEN || github.token }}
-        run: node scripts/sync-roadmap.mjs
+          # The job's own token can't read the board's items. ROADMAP_TOKEN is a fine-grained token on the
+          # nebla-cloud organization with read-only access to Projects.
+          GITHUB_TOKEN: ${{ secrets.ROADMAP_TOKEN }}
+        run: |
+          if [ -z "$GITHUB_TOKEN" ]; then
+            echo "::warning::ROADMAP_TOKEN is not set, so the roadmap was not synced."
+            exit 0
+          fi
+          node scripts/sync-roadmap.mjs
       - name: Check the copy rules
         run: node scripts/check-brand.mjs app/data/roadmap.json
       - name: Commit a change
