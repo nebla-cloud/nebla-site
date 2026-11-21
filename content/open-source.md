@@ -31,4 +31,4 @@ The CLA lets the project ship your contribution in both the AGPL core and the co
 
 ## Contributing
 
-Read [CONTRIBUTING.md](https://github.com/nebla-cloud/nebla/blob/main/CONTRIBUTING.md) for the development setup, tests and commit style. Bug reports and feature ideas go in [GitHub issues](https://github.com/nebla-cloud/nebla/issues). Security problems go through [private vulnerability reporting](https://github.com/nebla-cloud/nebla/security), never public issues.
+Read [CONTRIBUTING.md](https://github.com/nebla-cloud/nebla/blob/main/CONTRIBUTING.md) for the development setup, tests and commit style. Bug reports and feature ideas go in [GitHub issues](https://github.com/nebla-cloud/nebla/issues), and the [roadmap](/roadmap) shows what is planned. Questions and chat go in the [Nebla Discord](https://nebla.dev/discord). For news, follow Nebla on [X](https://x.com/neblahq) or [Bluesky](https://bsky.app/profile/nebla.dev). Security problems go through [private vulnerability reporting](https://github.com/nebla-cloud/nebla/security), never public issues.

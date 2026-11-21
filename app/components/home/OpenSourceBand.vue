@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { site } from '~/data/site'
+
 const facts = [
   { title: 'AGPL-3.0', body: 'You can run and modify it, and changes to the core stay open.' },
   { title: 'Unlimited nodes', body: 'The free core has no cap on hosts or clusters.' },
@@ -18,7 +20,23 @@ const facts = [
           <dd class="mt-1 max-w-[32ch] leading-relaxed text-toned">{{ f.body }}</dd>
         </div>
       </dl>
-      <ULink to="/open-source" class="mt-10 inline-block font-semibold text-highlighted underline decoration-accented underline-offset-4 hover:decoration-current">How the licence and the CLA work</ULink>
+      <div class="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4">
+        <ULink to="/open-source" class="font-semibold text-highlighted underline decoration-accented underline-offset-4 hover:decoration-current">How the licence and the CLA work</ULink>
+        <div class="flex flex-wrap items-center gap-2">
+          <span class="text-toned">Follow along on</span>
+          <UButton
+            v-for="c in site.community"
+            :key="c.label"
+            :to="c.to"
+            target="_blank"
+            :icon="c.icon"
+            :label="c.label"
+            color="neutral"
+            variant="outline"
+            size="sm"
+          />
+        </div>
+      </div>
     </UContainer>
   </section>
 </template>

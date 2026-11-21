@@ -23,9 +23,20 @@ watch(() => route.path, () => { open.value = false })
           {{ item.label }}
         </ULink>
       </nav>
-      <div class="ml-auto flex items-center gap-2">
-        <UColorModeButton color="neutral" variant="ghost" />
+      <div class="ml-auto flex items-center gap-1">
+        <UButton
+          v-for="c in site.community"
+          :key="c.label"
+          :to="c.to"
+          target="_blank"
+          :icon="c.icon"
+          color="neutral"
+          variant="ghost"
+          :aria-label="`Nebla on ${c.label}`"
+          :class="c.label === 'Discord' ? '' : 'hidden lg:inline-flex'"
+        />
         <UButton :to="site.repo" target="_blank" icon="i-simple-icons-github" color="neutral" variant="ghost" aria-label="Nebla on GitHub" />
+        <UColorModeButton color="neutral" variant="ghost" />
         <UButton class="md:hidden" icon="i-lucide-menu" color="neutral" variant="ghost" :aria-expanded="open" aria-label="Menu" @click="open = !open" />
       </div>
     </UContainer>
@@ -34,6 +45,11 @@ watch(() => route.path, () => { open.value = false })
         <ULink v-for="item in site.nav" :key="item.to" :to="item.to" class="py-3 text-toned" active-class="text-highlighted font-medium">
           {{ item.label }}
         </ULink>
+        <div class="mt-2 flex flex-wrap gap-x-6 gap-y-2 border-t border-default pt-4 pb-2 text-sm">
+          <ULink v-for="c in site.community" :key="c.label" :to="c.to" target="_blank" class="inline-flex items-center gap-2 text-toned hover:text-highlighted">
+            <UIcon :name="c.icon" class="size-4" />{{ c.label }}
+          </ULink>
+        </div>
       </UContainer>
     </nav>
   </header>
