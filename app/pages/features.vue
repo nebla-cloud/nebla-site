@@ -21,16 +21,18 @@ const more = [
   { title: 'Server types', body: 'Admins define plans as vCPU, memory and disk, and can limit a plan to some locations. Users pick a plan, never a raw Proxmox setting.' },
   { title: 'Locations and many clusters', body: 'Each location is a Proxmox cluster or a standalone node. Nebla places each new server on the node with the most free capacity that has the image.' },
   { title: 'IP pools', body: 'Pools per location, with bridge, optional VLAN tag, CIDR, gateway and DNS. Each server gets a static IPv4 and an optional IPv6 through cloud-init, and they are freed on delete.' },
+  { title: 'Volumes', body: 'Extra disks you attach to a server. A volume keeps its data when you detach it, rebuild the server or delete it, and can move to another server in the same location.' },
+  { title: 'Firewalls', body: 'Inbound and outbound rules you apply to servers directly or by label, so new servers with the right label are covered as soon as they boot.' },
   { title: 'Tenant isolation', body: 'Every server\'s network card runs the Proxmox firewall with IP and MAC filtering, so one tenant cannot claim another tenant\'s address.' },
   { title: 'Projects, members and quotas', body: 'Members get owner, admin, member or read-only roles. Admins set per-project limits on servers, vCPU, memory, disk and IPs.' },
   { title: 'API tokens', body: 'Tokens belong to a project and are read-only or read-write, so a script only reaches the servers it should.' },
   { title: 'Actions', body: 'Every change returns an action with its status and progress. The panel shows it live and the CLI can wait for it to finish.' },
   { title: 'Stays in sync', body: 'A reconciler reads VM state from Proxmox, so changes made in the Proxmox UI still show up correctly in Nebla.' },
-  { title: 'Accounts and sign-in', body: 'Local accounts with TOTP two-factor sign-in. The admin creates users or sends invite links. Open sign-up is off until the admin turns it on.' },
+  { title: 'Accounts and sign-in', body: 'Local accounts that sign in with a passkey, or a password plus TOTP two-factor. The admin creates users or sends invite links. Open sign-up is off until the admin turns it on.' },
   { title: 'Admin area', body: 'Connect Proxmox clusters, then manage server types, images, IP pools, users and quotas from one place.' }
 ]
 
-const next = ['Volumes, snapshots and backups', 'Private networks and firewalls', 'The reseller module', 'Load balancers and managed certificates']
+const next = ['Snapshots and backups', 'Private networks and floating IPs', 'The reseller module', 'Load balancers and managed certificates']
 </script>
 
 <template>
@@ -43,7 +45,7 @@ const next = ['Volumes, snapshots and backups', 'Private networks and firewalls'
         <p>After that you can rename it, power it on, off, reboot, reset or shut it down, rebuild it from another image, change its type, and delete it.</p>
         <p>The web console opens in the browser. Nebla proxies it, so users never need Proxmox credentials or network access to the host.</p>
         <template #visual>
-          <MockServerDetail />
+          <PanelShot shot="server-detail" />
         </template>
       </FeatureRow>
 

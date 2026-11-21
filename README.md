@@ -44,6 +44,12 @@ pnpm check:layout     # every page at 320–1440px, no clipping; add --dark for 
 
 `pnpm generate` produces plain static files in `.output/public`, which any static host can serve.
 
+nebla.dev runs on Coolify from the `Dockerfile`: it builds the site, runs `check:site`, and serves the result with nginx (`deploy/nginx.conf`). nginx also answers the short links in `scripts/routes.mjs` (`/discord`) with a 302. `tests/nginx.test.mjs` fails if the two lists drift apart.
+
+## Panel screenshots
+
+`public/screens/` holds real screenshots of the panel in light and dark, taken from the core repo's UI harness (`internal/uiharness`) on demo data, and `PanelShot` shows them in a window frame. Retake them whenever the panel's look changes.
+
 ## Licence
 
 The site's code and copy are licensed under [AGPL-3.0](LICENSE). The Nebla name and logo are not covered by that licence. Please don't use them for other projects or forks. The Onest typeface is licensed under the SIL Open Font License 1.1 through `@fontsource/onest`.

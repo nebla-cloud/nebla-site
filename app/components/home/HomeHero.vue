@@ -21,7 +21,7 @@ import { site } from '~/data/site'
         </p>
       </div>
       <div class="hero-enter">
-        <MockCreateServer />
+        <PanelShot shot="create-server" priority />
       </div>
     </UContainer>
   </section>

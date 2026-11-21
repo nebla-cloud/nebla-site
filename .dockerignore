@@ -1,0 +1,10 @@
+node_modules
+.nuxt
+.output
+.data
+.git
+shots
+.idea
+.superpowers
+.DS_Store
+.env

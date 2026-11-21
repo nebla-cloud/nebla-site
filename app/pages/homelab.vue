@@ -22,7 +22,7 @@ const lines = [
         <p>Nebla runs as one container plus Postgres, on any machine that can reach Proxmox. A small VM on the same host works fine.</p>
         <p>It connects with an API token and a role you create once. Proxmox VE 8 and 9 are supported, and your existing VMs are left alone.</p>
         <template #visual>
-          <MockCreateServer compact />
+          <PanelShot shot="create-server" />
         </template>
       </FeatureRow>
 
@@ -30,7 +30,7 @@ const lines = [
         <p>When you only want a Debian box for an afternoon, Nebla picks the node, the VMID, the disk storage and the IP for you. You choose an image and a size.</p>
         <p>Official images for Debian, Ubuntu, Rocky Linux, AlmaLinux and Fedora are one click away on Proxmox VE 8.4 or later.</p>
         <template #visual>
-          <MockServerList />
+          <PanelShot shot="server-list" />
         </template>
       </FeatureRow>
 

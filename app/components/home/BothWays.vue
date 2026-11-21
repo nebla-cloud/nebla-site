@@ -22,7 +22,7 @@ const lines = [
       </div>
       <div class="mt-12 grid grid-cols-[minmax(0,1fr)] items-start gap-6 lg:grid-cols-2">
         <TerminalSession :lines="[...lines]" label="Your terminal" />
-        <MockServerDetail />
+        <PanelShot shot="server-detail" />
       </div>
     </UContainer>
   </section>
