@@ -8,7 +8,7 @@ RUN pnpm install --frozen-lockfile
 COPY . .
 RUN pnpm generate && node scripts/check-site.mjs
 
-FROM nginx:1.30.6-alpine
+FROM nginx:1.31.9-alpine
 COPY deploy/nginx.conf /etc/nginx/conf.d/default.conf
 COPY --from=build /site/.output/public /usr/share/nginx/html
 EXPOSE 80
