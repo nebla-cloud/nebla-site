@@ -1,4 +1,4 @@
-import { REDIRECTS, ROUTES } from './scripts/routes.mjs'
+import { MOVED, REDIRECTS, ROUTES } from './scripts/routes.mjs'
 
 export default defineNuxtConfig({
   modules: ['@nuxt/eslint', '@nuxt/ui', '@nuxt/content', '@nuxt/fonts'],
@@ -20,9 +20,12 @@ export default defineNuxtConfig({
   fonts: {
     families: [{ name: 'Onest', provider: 'google', weights: [400, 500, 600, 700, 800] }]
   },
-  content: { build: { markdown: { highlight: { theme: { light: 'github-light-high-contrast', default: 'github-light-high-contrast', dark: 'github-dark-high-contrast' }, langs: ['yaml', 'dotenv', 'sh', 'bash'] } } } },
+  content: { build: { markdown: { highlight: { theme: { light: 'github-light-high-contrast', default: 'github-light-high-contrast', dark: 'github-dark-high-contrast' }, langs: ['yaml', 'dotenv', 'sh', 'bash', 'json', 'ini'] } } } },
   icon: { serverBundle: 'local', clientBundle: { scan: true } },
-  routeRules: Object.fromEntries(Object.entries(REDIRECTS).map(([from, to]) => [from, { redirect: { to, statusCode: 302 } }])),
-  nitro: { prerender: { routes: [...ROUTES, ...Object.keys(REDIRECTS), '/sitemap.xml'], crawlLinks: true, failOnError: true } },
+  routeRules: {
+    ...Object.fromEntries(Object.entries(REDIRECTS).map(([from, to]) => [from, { redirect: { to, statusCode: 302 } }])),
+    ...Object.fromEntries(Object.entries(MOVED).map(([from, to]) => [from, { redirect: { to, statusCode: 301 } }]))
+  },
+  nitro: { prerender: { routes: [...ROUTES, ...Object.keys(REDIRECTS), ...Object.keys(MOVED), '/sitemap.xml'], crawlLinks: true, failOnError: true } },
   compatibilityDate: '2026-11-01'
 })

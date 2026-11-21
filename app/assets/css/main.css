@@ -73,3 +73,27 @@
 .prose-page a:hover {
   text-decoration-color: currentColor;
 }
+
+.prose-docs h1 {
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  margin-bottom: 1.25rem;
+}
+
+.prose-docs h2 {
+  scroll-margin-top: 6rem;
+}
+
+/* Heading anchors are links, but shouldn't look like them. */
+.prose-page h2 a,
+.prose-page h3 a {
+  text-decoration: none;
+}
+
+.prose-docs td:not(:first-child) code {
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+.prose-docs h3 {
+  scroll-margin-top: 6rem;
+}

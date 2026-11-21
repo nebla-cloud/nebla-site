@@ -6,14 +6,18 @@ import { parse } from 'yaml'
 const CORE = process.env.NEBLA_DEPLOY_DIR ?? '../nebla/deploy'
 const skip = existsSync(`${CORE}/compose.yaml`) ? false : 'core repo not checked out next to the site'
 
+const PAGE = 'content/docs/01.install.md'
+
 const blocks = (md, lang) => [...md.matchAll(new RegExp('```' + lang + '\\n([\\s\\S]*?)```', 'g'))].map(m => m[1])
 
 test('install page compose matches the repo compose apart from the image', { skip }, () => {
-  const md = readFileSync('content/install.md', 'utf8')
+  const md = readFileSync(PAGE, 'utf8')
   const page = parse(blocks(md, 'yaml')[0])
   const repo = parse(readFileSync(`${CORE}/compose.yaml`, 'utf8'))
 
-  assert.equal(page.services.panel.image, 'ghcr.io/nebla-cloud/nebla:latest')
+  // The repo reads ${NEBLA_IMAGE:-<pinned tag>}; the page shows the pinned tag itself.
+  const pinned = repo.services.panel.image.match(/^\$\{NEBLA_IMAGE:-(.+)\}$/)?.[1] ?? repo.services.panel.image
+  assert.equal(page.services.panel.image, pinned)
   assert.equal(page.services.panel.build, undefined)
   const without = (obj, ...keys) => Object.fromEntries(Object.entries(obj).filter(([k]) => !keys.includes(k)))
   assert.deepEqual(without(page.services.panel, 'image'), without(repo.services.panel, 'image', 'build'), 'panel service')
@@ -23,9 +27,9 @@ test('install page compose matches the repo compose apart from the image', { ski
 })
 
 test('every variable in the page .env exists in .env.example', { skip }, () => {
-  const md = readFileSync('content/install.md', 'utf8')
-  const env = blocks(md, 'dotenv')[0]
-  assert.ok(env, 'install.md has a dotenv block for .env')
+  const md = readFileSync(PAGE, 'utf8')
+  const env = blocks(md, 'dotenv').join('\n')
+  assert.ok(env, 'the install page has a dotenv block for .env')
   const known = new Set(readFileSync(`${CORE}/.env.example`, 'utf8').split('\n').map(l => l.replace(/^#\s*/, '').split('=')[0].trim()).filter(Boolean))
   for (const line of env.split('\n').filter(l => /^[A-Z_]+=/.test(l))) {
     assert.ok(known.has(line.split('=')[0]), line)

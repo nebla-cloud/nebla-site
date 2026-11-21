@@ -2,7 +2,7 @@ import { existsSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { parse } from 'node-html-parser'
-import { REDIRECTS, ROUTES } from './routes.mjs'
+import { MOVED, REDIRECTS, ROUTES } from './routes.mjs'
 
 const ORIGIN = 'https://nebla.dev'
 
@@ -42,7 +42,7 @@ export function checkRedirect(route, html, to) {
   return content.includes(`url=${to}`) ? [] : [`${route}: does not redirect to ${to}`]
 }
 
-export function checkOutput(dir, routes = ROUTES, redirects = REDIRECTS) {
+export function checkOutput(dir, routes = ROUTES, redirects = { ...REDIRECTS, ...MOVED }) {
   const errs = []
   const pages = []
   for (const route of routes) {
