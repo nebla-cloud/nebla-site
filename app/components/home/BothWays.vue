@@ -1,11 +1,12 @@
 <script setup lang="ts">
 const lines = [
   { kind: 'cmd', text: 'nebla server create --name web1 \\\n    --type small-2 --image debian-13 --ssh-key laptop' },
-  { kind: 'out', text: 'Waiting for create_server... done' },
-  { kind: 'out', text: 'Server web1 is running at 203.0.113.10' },
+  { kind: 'out', text: 'Waiting for create_server (812) ... done' },
+  { kind: 'out', text: 'Server 42 created' },
+  { kind: 'out', text: 'IPv4: 203.0.113.10' },
   { kind: 'cmd', text: 'nebla server list' },
-  { kind: 'out', text: 'NAME   STATUS    TYPE      IPV4' },
-  { kind: 'out', text: 'web1   running   small-2   203.0.113.10' }
+  { kind: 'out', text: 'ID   NAME   STATUS    IPV4           IPV6   TYPE      IMAGE       LOCATION   AGE' },
+  { kind: 'out', text: '42   web1   running   203.0.113.10   -      small-2   debian-13   home       1m' }
 ] as const
 </script>
 

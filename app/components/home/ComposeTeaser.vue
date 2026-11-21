@@ -18,9 +18,9 @@ const lines = [
           Try it on your own hardware
         </h2>
         <p class="mt-4 max-w-[40ch] text-lg leading-relaxed text-toned">
-          Nebla needs Docker, a Proxmox VE 8 or 9 host, and a few minutes. The install guide covers the API token and the first admin account.
+          Nebla needs Docker, a Proxmox VE 8 or 9 host, and a few minutes. The install guide covers Compose, the first admin account and connecting Proxmox.
         </p>
-        <UButton to="/install" size="lg" class="mt-6" label="Read the install guide" />
+        <UButton to="/docs/install" size="lg" class="mt-6" label="Read the install guide" />
       </div>
       <TerminalSession :lines="[...lines]" label="Any Linux box with Docker" />
       </div>

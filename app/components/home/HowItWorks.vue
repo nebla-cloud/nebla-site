@@ -1,8 +1,8 @@
 <script setup lang="ts">
 const steps = [
   { title: 'Start the container', body: 'docker compose brings up Nebla and its Postgres database on any machine that can reach Proxmox, such as a small VM or a mini PC.', code: 'docker compose up -d' },
-  { title: 'Connect Proxmox', body: 'Create an API token with Nebla\'s role and paste it into the admin area. Nebla works through the Proxmox API and never logs in over SSH or installs an agent.', code: 'pveum user token add nebla@pve panel --privsep 0' },
-  { title: 'Create servers', body: 'Pick an image and a type, add your SSH key, and the server boots with cloud-init, a static IP and your key in place.', code: 'nebla server create --name web1' }
+  { title: 'Connect Proxmox', body: 'Run the setup command from the panel on a Proxmox node. It creates Nebla\'s role, user and API token and reports back. Nebla then works through the Proxmox API, with no SSH and no agent.', code: 'curl -fsSL https://panel.example.com/v1/enroll.sh | NEBLA_TOKEN=nbe_… bash' },
+  { title: 'Create servers', body: 'Turn on an OS image, add a server type and an IP pool. Then pick an image and a size, and the server boots with cloud-init, a static IP and your SSH key in place.', code: 'nebla server create --name web1 --type small-2 --image debian-13' }
 ]
 </script>
 

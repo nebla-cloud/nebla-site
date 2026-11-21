@@ -3,9 +3,9 @@ usePageSeo('Nebla for resellers', 'Sell VMs from your own Proxmox clusters. Nebl
 
 const today = [
   { title: 'Projects and members', body: 'Each customer gets projects with their own members and roles. They see their own servers and nothing else.' },
-  { title: 'Quotas', body: 'Cap servers, vCPU, memory, disk and IPs per project, with defaults for new projects and a limit on how many projects one user can own.' },
+  { title: 'Quotas', body: 'Cap servers, vCPU, memory, disk, IPs and volumes per project, with defaults for new projects and a limit on how many projects one user can own.' },
   { title: 'Isolation between tenants', body: 'The Proxmox firewall filters each server by its own IPs and MAC address. The console proxy checks project membership on every connection.' },
-  { title: 'Invites and sign-up control', body: 'Invite customers by link or email. Open sign-up stays off unless you turn it on.' },
+  { title: 'Invites and sign-up control', body: 'Create accounts for customers, or let project owners invite people by link or email. Open sign-up stays off unless you turn it on.' },
   { title: 'Scoped API tokens', body: 'Customers automate their own project with read-only or read-write tokens, with rate limits per token.' },
   { title: 'Many clusters, one panel', body: 'Add each Proxmox cluster or standalone node as a location. Customers pick a location and Nebla handles placement.' }
 ]
@@ -41,8 +41,9 @@ const module = [
             A commercial add-on for hosting businesses. It is a separate build on top of the open core, activated with a licence key, so the core stays complete for everyone else.
           </p>
           <p class="mt-4 max-w-[44ch] leading-relaxed opacity-80">
-            It is still in development. Follow the project on GitHub to hear when it is ready.
+            It is still in development and planned for v1.0. The roadmap shows where it stands.
           </p>
+          <ULink to="/roadmap" class="mt-6 inline-block font-semibold text-ink-50 underline decoration-current/40 underline-offset-4 hover:decoration-current">See the roadmap</ULink>
         </div>
         <ul class="divide-y divide-current/15">
           <li v-for="m in module" :key="m.title" class="py-4 first:pt-0">

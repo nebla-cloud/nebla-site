@@ -13,7 +13,7 @@ import { site } from '~/data/site'
           Create, resize and rebuild VMs from a clean panel or the <code class="font-mono text-[0.92em] text-highlighted">nebla</code> CLI. Nebla runs as one container next to Proxmox and installs nothing on the host.
         </p>
         <div class="mt-8 flex flex-wrap gap-3">
-          <UButton to="/install" size="xl" label="Install with Docker" />
+          <UButton to="/docs/install" size="xl" label="Install with Docker" />
           <UButton :to="site.repo" target="_blank" size="xl" color="neutral" variant="outline" icon="i-simple-icons-github" label="View on GitHub" />
         </div>
         <p class="mt-6 text-sm text-muted">

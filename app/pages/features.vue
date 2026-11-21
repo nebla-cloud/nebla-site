@@ -1,35 +1,38 @@
 <script setup lang="ts">
-usePageSeo('Features | Nebla', 'Everything Nebla does on top of Proxmox VE: servers, OS images, SSH keys and cloud-init, IP pools with tenant isolation, projects and quotas, a REST API and a CLI.')
+usePageSeo('Features | Nebla', 'Everything Nebla does on top of Proxmox VE: servers, OS images, volumes, firewalls, SSH keys and cloud-init, IP pools with tenant isolation, projects and quotas, a REST API and a CLI.')
 
 const imageLines = [
   { kind: 'cmd', text: 'nebla image list' },
-  { kind: 'out', text: 'NAME            OS        LOCATIONS' },
-  { kind: 'out', text: 'debian-13       debian    home, rack-2' },
-  { kind: 'out', text: 'ubuntu-24.04    ubuntu    home, rack-2' },
-  { kind: 'out', text: 'rocky-10        rocky     home' },
-  { kind: 'out', text: 'fedora-42       fedora    home' }
+  { kind: 'out', text: 'ID   NAME           OS       VERSION   DESCRIPTION' },
+  { kind: 'out', text: '1    debian-13      debian   13        Debian 13 generic cloud image' },
+  { kind: 'out', text: '2    ubuntu-24.04   ubuntu   24.04     Ubuntu 24.04 server cloud image' },
+  { kind: 'out', text: '3    rocky-10       rocky    10        Rocky Linux 10 generic cloud image' },
+  { kind: 'out', text: '4    fedora-45      fedora   45        Fedora 45 cloud base image' }
 ] as const
 
 const keyLines = [
   { kind: 'cmd', text: 'nebla ssh-key create --name laptop --public-key-from-file ~/.ssh/id_ed25519.pub' },
-  { kind: 'out', text: 'SSH key laptop created' },
+  { kind: 'out', text: 'SSH key 3 created' },
   { kind: 'cmd', text: 'nebla server create --name app1 --type small-2 --image ubuntu-24.04 \\\n    --ssh-key laptop --user-data-from-file cloud-init.yaml' },
-  { kind: 'out', text: 'Server app1 is running at 203.0.113.21' }
+  { kind: 'out', text: 'Waiting for create_server (815) ... done' },
+  { kind: 'out', text: 'Server 43 created' },
+  { kind: 'out', text: 'IPv4: 203.0.113.21' }
 ] as const
 
 const more = [
-  { title: 'Server types', body: 'Admins define plans as vCPU, memory and disk, and can limit a plan to some locations. Users pick a plan, never a raw Proxmox setting.' },
-  { title: 'Locations and many clusters', body: 'Each location is a Proxmox cluster or a standalone node. Nebla places each new server on the node with the most free capacity that has the image.' },
+  { title: 'One-line Proxmox setup', body: 'Run one command from the panel on a Proxmox node. It creates the role, user and API token Nebla needs and reports the node\'s certificate back, so nothing is copied by hand.' },
+  { title: 'Server types', body: 'Admins define sizes as vCPU, memory and disk, start from templates, and can limit a size to some locations. Users pick a size, never a raw Proxmox setting.' },
+  { title: 'Locations and many clusters', body: 'Each location is a Proxmox cluster or a standalone node. Nebla places each new server on the online node with the most free memory that has the image.' },
   { title: 'IP pools', body: 'Pools per location, with bridge, optional VLAN tag, CIDR, gateway and DNS. Each server gets a static IPv4 and an optional IPv6 through cloud-init, and they are freed on delete.' },
   { title: 'Volumes', body: 'Extra disks you attach to a server. A volume keeps its data when you detach it, rebuild the server or delete it, and can move to another server in the same location.' },
   { title: 'Firewalls', body: 'Inbound and outbound rules you apply to servers directly or by label, so new servers with the right label are covered as soon as they boot.' },
   { title: 'Tenant isolation', body: 'Every server\'s network card runs the Proxmox firewall with IP and MAC filtering, so one tenant cannot claim another tenant\'s address.' },
-  { title: 'Projects, members and quotas', body: 'Members get owner, admin, member or read-only roles. Admins set per-project limits on servers, vCPU, memory, disk and IPs.' },
+  { title: 'Projects, members and quotas', body: 'Members get owner, admin, member or read-only roles. Admins set per-project limits on servers, vCPU, memory, disk, IPs and volumes.' },
   { title: 'API tokens', body: 'Tokens belong to a project and are read-only or read-write, so a script only reaches the servers it should.' },
   { title: 'Actions', body: 'Every change returns an action with its status and progress. The panel shows it live and the CLI can wait for it to finish.' },
   { title: 'Stays in sync', body: 'A reconciler reads VM state from Proxmox, so changes made in the Proxmox UI still show up correctly in Nebla.' },
-  { title: 'Accounts and sign-in', body: 'Local accounts that sign in with a passkey, or a password plus TOTP two-factor. The admin creates users or sends invite links. Open sign-up is off until the admin turns it on.' },
-  { title: 'Admin area', body: 'Connect Proxmox clusters, then manage server types, images, IP pools, users and quotas from one place.' }
+  { title: 'Accounts and sign-in', body: 'Local accounts that sign in with a passkey, or a password with optional TOTP two-factor. Admins create accounts and project owners send invite links. Open sign-up is off until an admin turns it on.' },
+  { title: 'Admin area', body: 'A Get Nebla ready checklist walks you through the first setup. Then manage locations, OS images, server types, IP pools, users, projects and quotas from one place.' }
 ]
 
 const next = ['Snapshots and backups', 'Private networks and floating IPs', 'The reseller module', 'Load balancers and managed certificates']
@@ -42,7 +45,7 @@ const next = ['Snapshots and backups', 'Private networks and floating IPs', 'The
     <UContainer class="divide-y divide-default">
       <FeatureRow title="Servers, from create to delete">
         <p>Create a server in one page: location, image, type, IPs, SSH keys, optional cloud-init user data and a name.</p>
-        <p>After that you can rename it, power it on, off, reboot, reset or shut it down, rebuild it from another image, change its type, and delete it.</p>
+        <p>After that you can rename it, power it on, off, reboot, reset or shut it down, rebuild it from another image, change its type, watch its CPU, disk and network graphs, and delete it.</p>
         <p>The web console opens in the browser. Nebla proxies it, so users never need Proxmox credentials or network access to the host.</p>
         <template #visual>
           <PanelShot shot="server-detail" />
@@ -82,14 +85,16 @@ const next = ['Snapshots and backups', 'Private networks and floating IPs', 'The
       <div>
         <h2 class="text-[clamp(1.6rem,2.8vw,2.2rem)] leading-[1.12] font-bold tracking-[-0.025em] text-highlighted">An API first, then a panel and a CLI</h2>
         <p class="mt-4 max-w-[52ch] leading-relaxed text-toned">
-          Nebla has a REST API at <code class="font-mono text-[0.92em]">/v1</code>, described by an OpenAPI spec. The CLI is generated from that spec, so it covers what the panel covers. It keeps contexts for each panel you use and prints tables, JSON or YAML.
+          Nebla has a REST API at <code class="font-mono text-[0.92em]">/v1</code>, described by an OpenAPI spec. The panel uses it, and so does the CLI, which covers servers, volumes, firewalls, SSH keys and images. The CLI keeps contexts for each panel you use and prints tables, JSON or YAML.
         </p>
+        <ULink to="/docs/api" class="mt-6 inline-block font-semibold text-highlighted underline decoration-accented underline-offset-4 hover:decoration-current">Read the API docs</ULink>
       </div>
       <div>
         <h2 class="text-[clamp(1.6rem,2.8vw,2.2rem)] leading-[1.12] font-bold tracking-[-0.025em] text-highlighted">Coming next</h2>
         <ul class="mt-4 space-y-2 text-toned">
           <li v-for="n in next" :key="n" class="flex gap-3"><span aria-hidden="true" class="mt-2.5 size-1.5 shrink-0 rounded-full bg-accented" />{{ n }}</li>
         </ul>
+        <ULink to="/roadmap" class="mt-6 inline-block font-semibold text-highlighted underline decoration-accented underline-offset-4 hover:decoration-current">See the roadmap</ULink>
       </div>
     </UContainer>
   </div>

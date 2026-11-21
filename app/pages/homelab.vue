@@ -4,9 +4,12 @@ usePageSeo('Nebla for homelabs', 'Run your own cloud console on the Proxmox box 
 const lines = [
   { kind: 'cmd', text: 'nebla context create home' },
   { kind: 'out', text: 'Endpoint: https://nebla.home.arpa' },
-  { kind: 'out', text: 'Token: ********' },
+  { kind: 'out', text: 'Token: ' },
+  { kind: 'out', text: 'Context home created' },
   { kind: 'cmd', text: 'nebla server create --name pihole \\\n    --type small-2 --image debian-13 --ssh-key laptop' },
-  { kind: 'out', text: 'Server pihole is running at 192.0.2.40' },
+  { kind: 'out', text: 'Waiting for create_server (57) ... done' },
+  { kind: 'out', text: 'Server 7 created' },
+  { kind: 'out', text: 'IPv4: 192.0.2.40' },
   { kind: 'cmd', text: 'nebla server ssh pihole' }
 ] as const
 </script>
@@ -14,13 +17,13 @@ const lines = [
 <template>
   <div>
     <PageIntro title="A cloud console for the Proxmox box under your desk" lede="You already run Proxmox. Nebla gives you the part that makes a public cloud pleasant to use: pick an image, pick a size, get a server with your SSH key in it.">
-      <UButton to="/install" size="xl" class="mt-8" label="Install Nebla" />
+      <UButton to="/docs/install" size="xl" class="mt-8" label="Install Nebla" />
     </PageIntro>
 
     <UContainer class="divide-y divide-default">
       <FeatureRow title="Nothing new on the host">
         <p>Nebla runs as one container plus Postgres, on any machine that can reach Proxmox. A small VM on the same host works fine.</p>
-        <p>It connects with an API token and a role you create once. Proxmox VE 8 and 9 are supported, and your existing VMs are left alone.</p>
+        <p>One setup command on a Proxmox node creates the role, user and API token Nebla needs. Proxmox VE 8 and 9 are supported, and Nebla only touches the VMs it created.</p>
         <template #visual>
           <PanelShot shot="create-server" />
         </template>
@@ -35,7 +38,7 @@ const lines = [
       </FeatureRow>
 
       <FeatureRow title="Script it">
-        <p>Every button in the panel has a CLI command and an API endpoint behind it. Make a read-write token for your automation and a read-only one for your dashboard.</p>
+        <p>Every button in the panel has an API endpoint behind it, and the CLI covers servers, volumes, firewalls and SSH keys. Make a read-and-write token for your automation and a read-only one for your dashboard.</p>
         <p>Install the CLI with <code class="font-mono text-[0.92em]">brew install nebla-cloud/tap/nebla</code> or grab a binary from GitHub Releases.</p>
         <template #visual>
           <TerminalSession :lines="[...lines]" />
