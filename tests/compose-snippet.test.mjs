@@ -10,14 +10,16 @@ const PAGE = 'content/docs/01.install.md'
 
 const blocks = (md, lang) => [...md.matchAll(new RegExp('```' + lang + '\\n([\\s\\S]*?)```', 'g'))].map(m => m[1])
 
+test('install page uses the latest Nebla image', () => {
+  const page = parse(blocks(readFileSync(PAGE, 'utf8'), 'yaml')[0])
+  assert.equal(page.services.panel.image, 'ghcr.io/nebla-cloud/nebla:latest')
+})
+
 test('install page compose matches the repo compose apart from the image', { skip }, () => {
   const md = readFileSync(PAGE, 'utf8')
   const page = parse(blocks(md, 'yaml')[0])
   const repo = parse(readFileSync(`${CORE}/compose.yaml`, 'utf8'))
 
-  // The repo reads ${NEBLA_IMAGE:-<pinned tag>}; the page shows the pinned tag itself.
-  const pinned = repo.services.panel.image.match(/^\$\{NEBLA_IMAGE:-(.+)\}$/)?.[1] ?? repo.services.panel.image
-  assert.equal(page.services.panel.image, pinned)
   assert.equal(page.services.panel.build, undefined)
   const without = (obj, ...keys) => Object.fromEntries(Object.entries(obj).filter(([k]) => !keys.includes(k)))
   assert.deepEqual(without(page.services.panel, 'image'), without(repo.services.panel, 'image', 'build'), 'panel service')
