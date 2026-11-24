@@ -3,7 +3,7 @@ usePageSeo('Nebla for resellers', 'Sell VMs from your own Proxmox clusters. Nebl
 
 const today = [
   { title: 'Projects and members', body: 'Each customer gets projects with their own members and roles. They see their own servers and nothing else.' },
-  { title: 'Quotas', body: 'Cap servers, vCPU, memory, disk, IPs and volumes per project, with defaults for new projects and a limit on how many projects one user can own.' },
+  { title: 'Quotas', body: 'Cap servers, vCPU, memory, disk, IPs, volumes and backups per project, with defaults for new projects and a limit on how many projects one user can own.' },
   { title: 'Isolation between tenants', body: 'The Proxmox firewall filters each server by its own IPs and MAC address. The console proxy checks project membership on every connection.' },
   { title: 'Invites and sign-up control', body: 'Create accounts for customers, or let project owners invite people by link or email. Open sign-up stays off unless you turn it on.' },
   { title: 'Scoped API tokens', body: 'Customers automate their own project with read-only or read-write tokens, with rate limits per token.' },

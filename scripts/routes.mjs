@@ -7,6 +7,7 @@ export const DOCS = [
   '/docs/projects',
   '/docs/servers',
   '/docs/volumes',
+  '/docs/backups',
   '/docs/firewalls',
   '/docs/networks',
   '/docs/cli',

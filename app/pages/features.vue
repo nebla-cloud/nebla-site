@@ -1,5 +1,5 @@
 <script setup lang="ts">
-usePageSeo('Features | Nebla', 'Everything Nebla does on top of Proxmox VE: servers, OS images, volumes, firewalls, SSH keys and cloud-init, IP pools with tenant isolation, projects and quotas, a REST API and a CLI.')
+usePageSeo('Features | Nebla', 'Everything Nebla does on top of Proxmox VE: servers, OS images, volumes, backups, firewalls, SSH keys and cloud-init, IP pools with tenant isolation, projects and quotas, a REST API and a CLI.')
 
 const imageLines = [
   { kind: 'cmd', text: 'nebla image list' },
@@ -25,9 +25,10 @@ const more = [
   { title: 'Locations and many clusters', body: 'Each location is a Proxmox cluster or a standalone node. Nebla places each new server on the online node with the most free memory that has the image.' },
   { title: 'IP pools', body: 'Pools per location, with bridge, optional VLAN tag, CIDR, gateway and DNS. Each server gets a static IPv4 and an optional IPv6 through cloud-init, and they are freed on delete.' },
   { title: 'Volumes', body: 'Extra disks you attach to a server. A volume keeps its data when you detach it, rebuild the server or delete it, and can move to another server in the same location.' },
+  { title: 'Backups', body: 'Daily or on-demand copies of a server\'s boot disk on Proxmox Backup Server, keeping the last few. Restore a server in place and it keeps its addresses, volumes and firewalls.' },
   { title: 'Firewalls', body: 'Inbound and outbound rules you apply to servers directly or by label, so new servers with the right label are covered as soon as they boot.' },
   { title: 'Tenant isolation', body: 'Every server\'s network card runs the Proxmox firewall with IP and MAC filtering, so one tenant cannot claim another tenant\'s address.' },
-  { title: 'Projects, members and quotas', body: 'Members get owner, admin, member or read-only roles. Admins set per-project limits on servers, vCPU, memory, disk, IPs and volumes.' },
+  { title: 'Projects, members and quotas', body: 'Members get owner, admin, member or read-only roles. Admins set per-project limits on servers, vCPU, memory, disk, IPs, volumes and backups.' },
   { title: 'API tokens', body: 'Tokens belong to a project and are read-only or read-write, so a script only reaches the servers it should.' },
   { title: 'Actions', body: 'Every change returns an action with its status and progress. The panel shows it live and the CLI can wait for it to finish.' },
   { title: 'Stays in sync', body: 'A reconciler reads VM state from Proxmox, so changes made in the Proxmox UI still show up correctly in Nebla.' },
@@ -35,7 +36,7 @@ const more = [
   { title: 'Admin area', body: 'A Get Nebla ready checklist walks you through the first setup. Then manage locations, OS images, server types, IP pools, users, projects and quotas from one place.' }
 ]
 
-const next = ['Snapshots and backups', 'Private networks and floating IPs', 'The reseller module', 'Load balancers and managed certificates']
+const next = ['Snapshots', 'Private networks and floating IPs', 'The reseller module', 'Load balancers and managed certificates']
 </script>
 
 <template>
